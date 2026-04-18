@@ -4,7 +4,7 @@ import Raptor
 @main
 struct RaptorWebsite {
     static func main() async {
-        var site = ShiinaBlog()
+        var site = Arknights()
 
         do {
             try await site.publish()
@@ -14,7 +14,7 @@ struct RaptorWebsite {
     }
 }
 
-struct ShiinaBlog: Site {
+struct Arknights: Site {
     var name = "My Blog"
     var titleSuffix = " – My Awesome Site"
     var url = URL(static: "https://www.shiinayane.com")

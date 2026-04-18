@@ -2,7 +2,7 @@
 import PackageDescription
 
 let package = Package(
-    name: "RaptorShiinayane",
+    name: "RaptorArknights",
     platforms: [.macOS(.v15)],
     dependencies: [
         .package(
@@ -12,7 +12,7 @@ let package = Package(
     ],
     targets: [
         .executableTarget(
-            name: "RaptorShiinayane",
+            name: "RaptorArknights",
             dependencies: [
                 .product(name: "Raptor", package: "Raptor")
             ],
