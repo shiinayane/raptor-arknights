@@ -18,6 +18,10 @@ let package = Package(
             ],
             // Can be removed for single-language sites
             resources: [.process("Resources")]
+        ),
+        .testTarget(
+            name: "RaptorArknightsTests",
+            dependencies: ["RaptorArknights"]
         )
     ]
 )
