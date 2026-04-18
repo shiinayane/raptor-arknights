@@ -4,8 +4,22 @@ import Raptor
 struct Home: Page {
     var title = "Home"
 
+    @Environment(\.posts) private var posts
+
     var body: some HTML {
-        Text("Hello world!")
-            .font(.title1)
+        VStack(alignment: .leading, spacing: 24) {
+            Text("Posts")
+                .font(.title1)
+
+            if posts.isEmpty {
+                Text("No posts yet.")
+            } else {
+                VStack(alignment: .leading, spacing: 18) {
+                    ForEach(posts) { post in
+                        PostListItem(post: post)
+                    }
+                }
+            }
+        }
     }
 }
