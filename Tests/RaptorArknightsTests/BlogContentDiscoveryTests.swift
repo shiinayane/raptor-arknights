@@ -213,6 +213,28 @@ final class BlogContentDiscoveryTests: XCTestCase {
         XCTAssertEqual(sections[1].posts.first?.title, "March")
     }
 
+    func testArchiveSectionsSortPostsWithinMonthByNewestFirst() {
+        let early = makePost(title: "Early", date: date("2026-04-01T00:00:00Z"))
+        let late = makePost(title: "Late", date: date("2026-04-18T00:00:00Z"))
+
+        let sections = ArchivePage.makeSections(for: [early, late])
+
+        XCTAssertEqual(sections.count, 1)
+        XCTAssertEqual(sections[0].id, "2026-04")
+        XCTAssertEqual(sections[0].posts.map(\.title), ["Late", "Early"])
+    }
+
+    func testArchivePagePathUsesArchivesRoute() {
+        XCTAssertEqual(ArchivePage().path, "/archives")
+    }
+
+    func testSitePagesIncludeArchivesRouteAndExcludeArchiveRoute() {
+        let pages = Arknights().pages
+
+        XCTAssertTrue(pages.contains { $0.path == ArchivePage().path })
+        XCTAssertFalse(pages.contains { $0.path == "/archive" })
+    }
+
     private func date(_ string: String) -> Date {
         let formatter = ISO8601DateFormatter()
         return formatter.date(from: string)!

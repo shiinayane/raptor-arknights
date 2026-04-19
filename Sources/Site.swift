@@ -26,6 +26,9 @@ struct Arknights: Site {
 
     var homePage = Home()
     var layout = MainLayout()
+    var pages: [any Page] {
+        ArchivePage()
+    }
     var postPages: [any PostPage] {
         ArticlePage()
     }

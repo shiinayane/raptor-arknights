@@ -21,16 +21,8 @@ struct SiteHeader: HTML {
             Spacer()
 
             HStack(alignment: .center, spacing: .medium) {
-                LinkGroup(destination: "/archive") {
-                    InlineText("Archive")
-                }
-
-                LinkGroup(destination: "/tags") {
-                    InlineText("Tags")
-                }
-
-                LinkGroup(destination: "/categories") {
-                    InlineText("Categories")
+                LinkGroup(destination: ArchivePage().path) {
+                    InlineText("Archives")
                 }
             }
         }
