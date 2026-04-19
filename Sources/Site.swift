@@ -36,9 +36,11 @@ struct Arknights: Site {
     var pages: [any Page] {
         [
             ArchivePage(),
-            TagIndexPage(tags: discoveredTags)
+            TagIndexPage(tags: discoveredTags),
+            CategoryIndexPage(categories: discoveredCategories)
         ]
         + discoveredTags.map(TagDetailPage.init)
+        + discoveredCategories.map(CategoryDetailPage.init)
     }
     var postPages: [any PostPage] {
         ArticlePage()

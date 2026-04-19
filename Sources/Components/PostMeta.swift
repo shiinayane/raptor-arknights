@@ -24,16 +24,37 @@ struct PostMeta: HTML {
                     .foregroundStyle(.secondary)
             }
 
-            if let tags = post.tags, !tags.isEmpty {
-                HStack(alignment: .center, spacing: .small) {
-                    ForEach(tags) { tag in
-                        LinkGroup(destination: tag.path) {
-                            InlineText(tag.name)
+            HStack(alignment: .center, spacing: .small) {
+                if !post.type.isEmpty {
+                    Link(displayName(from: post.type), destination: categoryPath(from: post.type))
+                        .foregroundStyle(.secondary)
+                }
+                
+                if let tags = post.tags, !tags.isEmpty {
+                    InlineText("·")
+                        .foregroundStyle(.secondary)
+                    
+                    HStack(alignment: .center, spacing: .small) {
+                        ForEach(tags) { tag in
+                            LinkGroup(destination: tag.path) {
+                                InlineText(tag.name)
+                            }
                         }
                     }
                 }
             }
         }
+    }
+
+    private func displayName(from folder: String) -> String {
+        folder
+            .split(separator: "-")
+            .map { $0.prefix(1).uppercased() + $0.dropFirst() }
+            .joined(separator: " ")
+    }
+
+    private func categoryPath(from folder: String) -> String {
+        "/categories/\(folder.lowercased().replacingOccurrences(of: " ", with: "-"))"
     }
 
     private static let dateFormatter: DateFormatter = {
