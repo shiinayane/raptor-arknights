@@ -25,8 +25,11 @@ struct Arknights: Site {
     var name = "My Blog"
     var titleSuffix = " – My Awesome Site"
     var url = URL(static: "https://www.shiinayane.com")
-
     var author = "shiinayane"
+    
+    var themes: [any Theme] {
+        ArknightsTheme()
+    }
 
     var discoveredTags: [BlogTagEntry] = []
     var discoveredCategories: [BlogCategoryEntry] = []
