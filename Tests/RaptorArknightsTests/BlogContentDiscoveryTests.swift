@@ -1,3 +1,10 @@
+//
+//  BlogContentDiscoveryTests.swift
+//  RaptorArknights
+//
+//  Created by 椎名アヤネ on 2026/04/18.
+//
+
 import XCTest
 @testable import RaptorArknights
 @testable import Raptor

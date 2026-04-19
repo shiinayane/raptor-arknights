@@ -1,3 +1,10 @@
+//
+//  SiteHeader.swift
+//  RaptorArknights
+//
+//  Created by 椎名アヤネ on 2026/04/18.
+//
+
 import Foundation
 import Raptor
 
