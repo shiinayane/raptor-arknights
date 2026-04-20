@@ -10,38 +10,51 @@ import Raptor
 
 struct PostMeta: HTML {
     let post: Post
+    
+    private var hasCategory: Bool {
+        !post.type.isEmpty
+    }
+    
+    private var visibleTags: [TagMetadata] {
+        post.tags ?? []
+    }
 
     var body: some HTML {
         VStack(alignment: .leading, spacing: 8) {
             HStack(alignment: .center, spacing: .small) {
                 InlineText(Self.dateFormatter.string(from: post.date))
                     .foregroundStyle(.secondary)
-
+                
                 InlineText("·")
                     .foregroundStyle(.secondary)
-
+                
                 InlineText("\(post.estimatedReadingMinutes) min read")
                     .foregroundStyle(.secondary)
             }
-
-            HStack(alignment: .center, spacing: .small) {
-                if !post.type.isEmpty {
-                    Link(displayName(from: post.type), destination: categoryPath(from: post.type))
-                        .foregroundStyle(.secondary)
-                }
-                
-                if let tags = post.tags, !tags.isEmpty {
-                    InlineText("·")
-                        .foregroundStyle(.secondary)
+            .style(MetaRowStyle())
+            
+            if hasCategory || !visibleTags.isEmpty {
+                HStack(alignment: .center, spacing: .small) {
+                    if hasCategory {
+                        Link(displayName(from: post.type), destination: categoryPath(from: post.type))
+                            .style(TaxonomyPillStyle())
+                    }
                     
-                    HStack(alignment: .center, spacing: .small) {
-                        ForEach(tags) { tag in
-                            LinkGroup(destination: tag.path) {
-                                InlineText(tag.name)
+                    if !visibleTags.isEmpty {
+                        if hasCategory {
+                            InlineText("·")
+                                .foregroundStyle(.secondary)
+                        }
+                        
+                        HStack(alignment: .center, spacing: .small) {
+                            ForEach(visibleTags) { tag in
+                                Link(tag.name, destination: tag.path)
+                                    .style(TaxonomyPillStyle())
                             }
                         }
                     }
                 }
+                .style(MetaRowStyle())
             }
         }
     }

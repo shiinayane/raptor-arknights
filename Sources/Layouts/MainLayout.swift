@@ -5,7 +5,6 @@
 //  Created by 椎名アヤネ on 2026/04/18.
 //
 
-import Foundation
 import Raptor
 
 struct MainLayout: Layout {
@@ -13,6 +12,8 @@ struct MainLayout: Layout {
         Navigation {
             SiteHeader()
         }
+        .margin(.vertical, 20)
+        .navigationBarSizing(.contentArea)
 
         Main {
             content
