@@ -28,7 +28,7 @@ struct PostListItem: HTML {
 
                 // TODO: Add sticky badge support near the title.
                 // TODO: Add a dedicated excerpt block style if needed.
-                // TODO: Add a read-more element matching the original theme.
+                PostReadMore()
             }
             .style(PostCardStyle())
         }
