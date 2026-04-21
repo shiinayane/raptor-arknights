@@ -20,43 +20,30 @@ struct PostMeta: HTML {
     }
 
     var body: some HTML {
-        VStack(alignment: .leading, spacing: 8) {
-            HStack(alignment: .center, spacing: .small) {
-                InlineText(Self.dateFormatter.string(from: post.date))
-                    .foregroundStyle(.secondary)
-                
-                InlineText("·")
-                    .foregroundStyle(.secondary)
-                
-                InlineText("\(post.estimatedReadingMinutes) min read")
-                    .foregroundStyle(.secondary)
-            }
-            .style(MetaRowStyle())
-            
-            if hasCategory || !visibleTags.isEmpty {
-                HStack(alignment: .center, spacing: .small) {
-                    if hasCategory {
-                        Link(displayName(from: post.type), destination: categoryPath(from: post.type))
-                            .style(TaxonomyPillStyle())
-                    }
-                    
-                    if !visibleTags.isEmpty {
-                        if hasCategory {
-                            InlineText("·")
-                                .foregroundStyle(.secondary)
-                        }
-                        
-                        HStack(alignment: .center, spacing: .small) {
-                            ForEach(visibleTags) { tag in
-                                Link(tag.name, destination: tag.path)
-                                    .style(TaxonomyPillStyle())
-                            }
+        HStack(alignment: .center, spacing: 0) {
+            HStack(alignment: .center, spacing: 0) {
+                if hasCategory {
+                    Link(displayName(from: post.type), destination: categoryPath(from: post.type))
+                        .style(CategoryLabelStyle())
+                }
+
+                if !visibleTags.isEmpty {
+                    HStack(alignment: .center, spacing: .small) {
+                        ForEach(visibleTags) { tag in
+                            Link(tag.name, destination: tag.path)
+                                .style(TagLabelStyle())
                         }
                     }
                 }
-                .style(MetaRowStyle())
             }
+            
+            Spacer()
+            
+            InlineText(Self.dateFormatter.string(from: post.date))
+                .style(MetaTimeStyle())
         }
+        .style(Property.width(.percent(100)))
+        .style(MetaRowStyle())
     }
 
     private func displayName(from folder: String) -> String {

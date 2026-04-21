@@ -5,7 +5,6 @@
 //  Created by 椎名アヤネ on 2026/04/18.
 //
 
-import Foundation
 import Raptor
 
 struct PostListItem: HTML {
@@ -14,6 +13,8 @@ struct PostListItem: HTML {
     var body: some HTML {
         LinkGroup(destination: post) {
             VStack(alignment: .leading, spacing: 12) {
+                PostMeta(post: post)
+
                 Text(post.title)
                     .font(.title3)
 
@@ -25,8 +26,9 @@ struct PostListItem: HTML {
                         .foregroundStyle(.secondary)
                 }
 
-                PostMeta(post: post)
-                    .style(MetaRowStyle())
+                // TODO: Add sticky badge support near the title.
+                // TODO: Add a dedicated excerpt block style if needed.
+                // TODO: Add a read-more element matching the original theme.
             }
             .style(PostCardStyle())
         }

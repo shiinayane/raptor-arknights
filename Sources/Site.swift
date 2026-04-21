@@ -27,9 +27,9 @@ struct Arknights: Site {
     var url = URL(static: "https://www.shiinayane.com")
     var author = "shiinayane"
     
-    var themes: [any Theme] {
-        ArknightsTheme()
-    }
+//    var themes: [any Theme] {
+//        ArknightsTheme()
+//    }
 
     var discoveredTags: [BlogTagEntry] = []
     var discoveredCategories: [BlogCategoryEntry] = []

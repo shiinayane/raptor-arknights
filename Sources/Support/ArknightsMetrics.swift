@@ -26,6 +26,12 @@ struct ArknightsMetrics {
     
     let borderWidth: Double
     let cornerRadius: Double
+    
+    // MARK: - Post Card
+    
+    let postCardPaddingVertical: Int
+    let postCardPaddingHorizontal: Int
+    let stackedBorderOverlap: Double
 }
 
 extension ArknightsMetrics {
@@ -41,6 +47,10 @@ extension ArknightsMetrics {
         compactSpacing: 8,
         
         borderWidth: 1,
-        cornerRadius: 4
+        cornerRadius: 4,
+        
+        postCardPaddingVertical: 13,
+        postCardPaddingHorizontal: 15,
+        stackedBorderOverlap: -1,
     )
 }
