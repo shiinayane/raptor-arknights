@@ -34,7 +34,7 @@ struct Arknights: Site {
     var discoveredTags: [BlogTagEntry] = []
     var discoveredCategories: [BlogCategoryEntry] = []
 
-    var homePage = Home()
+    var homePage = HomePage()
     var layout = MainLayout()
     var pages: [any Page] {
         [

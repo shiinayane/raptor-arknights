@@ -1,5 +1,5 @@
 //
-//  Home.swift
+//  HomePage.swift
 //  RaptorArknights
 //
 //  Created by 椎名アヤネ on 2026/04/18.
@@ -8,7 +8,7 @@
 import Foundation
 import Raptor
 
-struct Home: Page {
+struct HomePage: Page {
     var title = "Home"
 
     @Environment(\.posts) private var posts
@@ -21,11 +21,7 @@ struct Home: Page {
             if posts.isEmpty {
                 Text("No posts yet.")
             } else {
-                VStack(alignment: .leading, spacing: 18) {
-                    ForEach(posts) { post in
-                        PostListItem(post: post)
-                    }
-                }
+                PostsList(posts: posts)
             }
         }
     }

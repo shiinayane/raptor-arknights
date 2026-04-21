@@ -12,8 +12,6 @@ struct MainLayout: Layout {
         Navigation {
             SiteHeader()
         }
-        .margin(.vertical, 20)
-        .navigationBarSizing(.contentArea)
 
         Main {
             content
