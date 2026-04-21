@@ -12,6 +12,7 @@ struct MetaTimeStyle: Style {
         let theme = environment.arknights
 
         return content
+            .font(.custom("BenderLight"))
             .foregroundStyle(theme.palette.textMuted)
             .style(Property.display(.inlineBlock))
     }

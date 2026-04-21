@@ -1,5 +1,5 @@
 //
-//  ArknightsTheme.swift
+//  ArknightsDesign.swift
 //  RaptorArknights
 //
 //  Created by 椎名アヤネ on 2026/04/19.
@@ -7,26 +7,26 @@
 
 import Raptor
 
-struct ArknightsTheme {
+struct ArknightsDesign {
     let palette: ArknightsPalette
     let metrics: ArknightsMetrics
     let typography: ArknightsTypography
 }
 
-extension ArknightsTheme {
-    static let dark = ArknightsTheme(
+extension ArknightsDesign {
+    static let dark = ArknightsDesign(
         palette: .dark,
         metrics: .default,
         typography: .default
     )
     
-    static let light = ArknightsTheme(
+    static let light = ArknightsDesign(
         palette: .light,
         metrics: .default,
         typography: .default
     )
     
-    static func resolve(from environment: EnvironmentConditions) -> ArknightsTheme {
+    static func resolve(from environment: EnvironmentConditions) -> ArknightsDesign {
         guard let scheme = environment.colorScheme else {
             return .dark
         }
@@ -41,7 +41,7 @@ extension ArknightsTheme {
 }
 
 extension EnvironmentConditions {
-    var arknights: ArknightsTheme {
-        ArknightsTheme.resolve(from: self)
+    var arknights: ArknightsDesign {
+        ArknightsDesign.resolve(from: self)
     }
 }

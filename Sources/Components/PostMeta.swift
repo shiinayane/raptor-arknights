@@ -20,8 +20,8 @@ struct PostMeta: HTML {
     }
 
     var body: some HTML {
-        HStack(alignment: .center, spacing: 0) {
-            HStack(alignment: .center, spacing: 0) {
+        HStack(alignment: .bottom, spacing: 0) {
+            HStack(alignment: .bottom, spacing: 0) {
                 if hasCategory {
                     Link(displayName(from: post.type), destination: categoryPath(from: post.type))
                         .style(CategoryLabelStyle())

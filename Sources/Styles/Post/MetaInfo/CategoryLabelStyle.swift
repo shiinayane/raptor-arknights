@@ -12,9 +12,8 @@ struct CategoryLabelStyle: Style {
         let theme = environment.arknights
 
         return content
+            .font(.custom("BenderLight", size: theme.typography.largeSize, weight: .bold))
             .foregroundStyle(theme.palette.accent)
-            .style(Property.fontSize(.px(theme.typography.largeSize)))
-            .style(Property.fontWeight(.bold))
             .style(Property.paddingRight(.px(10)))
     }
 }
