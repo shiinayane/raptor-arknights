@@ -20,30 +20,36 @@ struct PostMeta: HTML {
     }
 
     var body: some HTML {
-        HStack(alignment: .bottom, spacing: 0) {
+        VStack(alignment: .leading, spacing: 0) {
             HStack(alignment: .bottom, spacing: 0) {
-                if hasCategory {
-                    Link(displayName(from: post.type), destination: categoryPath(from: post.type))
-                        .style(CategoryLabelStyle())
-                }
+                HStack(alignment: .bottom, spacing: 0) {
+                    if hasCategory {
+                        Link(displayName(from: post.type), destination: categoryPath(from: post.type))
+                            .style(CategoryLabelStyle())
+                    }
 
-                if !visibleTags.isEmpty {
-                    HStack(alignment: .center, spacing: .small) {
-                        ForEach(visibleTags) { tag in
-                            Link(tag.name, destination: tag.path)
-                                .style(TagLabelStyle())
+                    if !visibleTags.isEmpty {
+                        HStack(alignment: .center, spacing: .small) {
+                            ForEach(visibleTags) { tag in
+                                Link(tag.name, destination: tag.path)
+                                    .style(TagLabelStyle())
+                            }
                         }
                     }
                 }
+                .style(Property.position(.relative))
+                .style(Property.zIndex(2))
+                
+                Spacer()
+                
+                InlineText(Self.dateFormatter.string(from: post.date))
+                    .style(MetaTimeStyle())
             }
+            .style(Property.width(.percent(100)))
+            .style(MetaRowStyle())
             
-            Spacer()
-            
-            InlineText(Self.dateFormatter.string(from: post.date))
-                .style(MetaTimeStyle())
+            InfoAccentBar()
         }
-        .style(Property.width(.percent(100)))
-        .style(MetaRowStyle())
     }
 
     private func displayName(from folder: String) -> String {

@@ -1,7 +1,6 @@
 ---
 title: Raptor Migration Notes
 date: 2026-04-17 09:00
-subtitle: Early implementation notes for the arknights rebuild
 tags: raptor, migration, devlog
 ---
 

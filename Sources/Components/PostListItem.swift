@@ -10,27 +10,31 @@ import Raptor
 struct PostListItem: HTML {
     let post: Post
 
-    var body: some HTML {
-        LinkGroup(destination: post) {
-            VStack(alignment: .leading, spacing: 12) {
-                PostMeta(post: post)
-
-                Text(post.title)
-                    .font(.title3)
-
-                if let subtitle = post.subtitle, !subtitle.isEmpty {
-                    InlineText(subtitle)
-                        .foregroundStyle(.secondary)
-                } else if !post.description.isEmpty {
-                    InlineText(post.description)
-                        .foregroundStyle(.secondary)
-                }
-
-                // TODO: Add sticky badge support near the title.
-                // TODO: Add a dedicated excerpt block style if needed.
-                PostReadMore()
-            }
-            .style(PostCardStyle())
+    private var excerptText: String? {
+        if let subtitle = post.subtitle, !subtitle.isEmpty {
+            return subtitle
+        } else {
+            return nil
         }
+    }
+    
+    var body: some HTML {
+        VStack(alignment: .leading, spacing: 12) {
+            PostMeta(post: post)
+
+            Link(post.title, destination: post.path)
+                .font(.title1)
+                .style(PageTitleStyle())
+
+            PostExcerpt(text: excerptText)
+
+            HStack(alignment: .center, spacing: 0) {
+                Spacer()
+                Link("READ MORE +", destination: post.path)
+                    .style(ReadMoreStyle())
+            }
+            .style(Property.width(.percent(100)))
+        }
+        .style(PostCardStyle())
     }
 }
